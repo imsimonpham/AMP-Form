@@ -1,0 +1,581 @@
+<!doctype html>
+<html ⚡4email data-css-strict>
+
+<head>
+   <meta charset="utf-8">
+   <script async src="https://cdn.ampproject.org/v0.js"></script>
+   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+   <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+   <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+   <style amp4email-boilerplate>
+      body {
+         visibility: hidden
+      }
+   </style>
+   <style amp-custom>
+      body {
+         
+         font-family: 'Nunito Sans', sans-serif;
+         font-size: 14px;
+         line-height: 18px;
+         color: #1B394C;
+         display: flex;
+         justify-content: center;
+      }
+
+      p {
+         margin: 0;
+      }
+
+      .container {
+         background: #F5F9FC;
+         max-width: 600px;
+         height: 100%;
+      }
+
+      .section {
+         padding: 0 4%;
+      }
+
+      .intro,
+      .footer {
+         background-color: #1B394C;
+         color: #fff;
+         padding-bottom: 30px;
+         padding-top: 30px;
+      }
+
+      .footer {
+         text-align: center;
+      }
+
+      .intro {
+         margin-bottom: 30px;
+      }
+
+      .intro_img {
+         margin-bottom: 20px
+      }
+
+      .form {
+         padding-bottom: 20px;
+      }
+
+      .single_question:not(:last-of-type) {
+         padding-bottom: 40px;
+      }
+
+      .question {
+         font-weight: 700;
+         font-size: 18px;
+         display: flex;
+         align-items: center;
+         margin-bottom: 15px;
+      }
+
+      .question .number {
+         flex-basis: 40px
+      }
+
+      .question .text {
+         line-height: 120%;
+      }
+
+      .number {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         width: 30px;
+         height: 30px;
+         border-radius: 50%;
+         color: #ffffff;
+         background-color: #1B394C;
+         margin-right: 10px;
+      }
+
+      .options_container {
+         position: relative;
+         z-index: 1;
+         display: flex;
+         justify-content: space-between;
+      }
+
+      .option {
+         display: flex;
+         flex-direction: column;
+         padding-top: 25px;
+         cursor: pointer;
+      }
+
+      .option.center {
+         align-items: center;
+      }
+
+      .option.end {
+         align-items: flex-end;
+      }
+
+      .option_text {
+         display: inline-block;
+         position: absolute;
+         top: 0;
+      }
+
+      .pill_option {
+         display: inline-block;
+         padding: 3px 5px;
+         border-radius: 20px;
+         margin-bottom: 10px;
+         border: 1px solid #3BA0A3;
+         cursor: pointer;
+      }
+
+      .pill_option:hover {
+         background-color: #3BA0A3;
+         color: #ffffff;
+      }
+
+      .pill_option[selected] {
+         background-color: #3BA0A3;
+         color: #ffffff;
+      }
+
+      #yoga,
+      #cycling,
+      #martial_arts,
+      #dancing,
+      #dog_walks,
+      #swimming,
+      #jogging,
+      #hiking,
+      #running,
+      #other {
+         outline: none
+      }
+
+      .bar {
+         position: absolute;
+         bottom: 10px;
+         left: 0;
+         background-color: #D4E9ED;
+         height: 2px;
+         width: 100%;
+         z-index: -1;
+      }
+
+      .selector {
+         width: 20px;
+         height: 20px;
+         border-radius: 50%;
+         border: 1px solid #3BA0A3;
+         background-color: #fff;
+         cursor: pointer;
+      }
+
+      .selector.selected {
+         background-color: #3BA0A3;
+      }
+
+      .btn_enabled {
+         border: 1px solid #D36665;
+         cursor: pointer;
+         background: #FFFFFF;
+         padding: 10px 20px;
+         font-weight: bold;
+         border-radius: 5px;
+         width: 150px;
+         color: #D36665;
+         margin-bottom: 20px;
+         margin-top: 20px;
+      }
+
+      .btn_enabled:hover {
+         background-color: #D36665;
+         color: #FFFFFF
+      }
+
+      .hidden {
+         display: none;
+      }
+
+      .btn_disabled {
+         display: inline-block;
+         border: none;
+         cursor: pointer;
+         background: #bebebe;
+         padding: 9px 0;
+         font-weight: bold;
+         border-radius: 5px;
+         width: 150px;
+         color: #1B394C;
+         margin-bottom: 20px;
+         text-align: center;
+         margin-top: 20px;
+      }
+
+      .msg {
+         margin-top: 20px;
+      }
+
+      .success {
+         color: #1B394C;
+         font-weight: bold;
+      }
+
+      .fail {
+         color: #D36665;
+         font-weight: bold;
+      }
+
+
+      @media only screen and (max-width: 480px) {
+
+         h2 {
+            font-size: 18px;
+         }
+
+         .bar,
+         .selector {
+            display: none;
+         }
+
+         .options_container {
+            justify-content: flex-start;
+            flex-wrap: wrap;
+         }
+
+         .option {
+            padding-top: 0;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+         }
+
+         .option:hover {
+            background: #3BA0A3;
+            color: #ffffff
+         }
+
+         .option.selected {
+            background: #3BA0A3;
+            color: #ffffff
+         }
+
+         .option_text {
+            position: inherit;
+            display: inline-block;
+            border: 1px solid #3BA0A3;
+            border-radius: 20px;
+            padding: 3px 5px
+         }
+
+      }
+   </style>
+</head>
+
+<body>
+   <div class="container">
+      <!-- Intro  -->
+      <div class="intro section">
+         <h2>Hello, Maria</h2>
+         <h3>Let us know how you feel!</h3>
+         <amp-img alt="workout"
+            src="https://image.s10.sfmc-content.com/lib/fe3411717064057d731372/m/1/62e4a742-35e4-47e5-8d4b-f2738a73080f.jpg"
+            width="600" height="400" layout="responsive" class="intro_img">
+         </amp-img>
+         <p style="margin-bottom: 10px">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus, hic! Sed, illum fugiat. Unde error
+            nesciunt nobis? Ad assumenda reprehenderit odio tempora dolores? Molestias quis sapiente repellat hic saepe
+            id!
+         </p>
+         <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, nam dignissimos incidunt alias in
+            quas consequatur quaerat quidem. Veritatis, ea.
+         </p>
+      </div>
+
+      <!-- Questionnaire  -->
+      <div class="questions section">
+         <div class="questions_container">
+            <!-- Question 1 -->
+            <div class="single_question">
+               <div class="question">
+                  <div><span class="number">1</span></div>
+                  <span class="text">How's your overal health?</span>
+               </div>
+               <div class="options_container">
+                  <div class="bar"></div>
+                  <div class="option" [class]="q1_selected_option == 'Poor' ? 'option selected' : 'option'" on="tap:AMP.setState({
+                     q1_selected_option: 'Poor',
+                     q1_answered: true
+                 })">
+                     <span class="option_text">Poor</span>
+                     <div class="selector" [class]="q1_selected_option == 'Poor' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q1_selected_option == 'Could be better' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q1_selected_option: 'Could be better',
+                        q1_answered: true
+                 })">
+                     <span class="option_text">
+                        Could be better
+                     </span>
+                     <div class="selector"
+                        [class]="q1_selected_option == 'Could be better' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q1_selected_option == 'Average' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                     q1_selected_option: 'Average',
+                     q1_answered: true
+               })">
+                     <span class="option_text">
+                        Average
+                     </span>
+                     <div class="selector" [class]="q1_selected_option == 'Average' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q1_selected_option == 'Good' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q1_selected_option: 'Good',
+                        q1_answered: true
+                 })">
+                     <span class="option_text">
+                        Good
+                     </span>
+                     <div class="selector" [class]="q1_selected_option == 'Good' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option end"
+                     [class]="q1_selected_option == 'Excellent' ? 'option end selected' : 'option end'" on="tap:AMP.setState({
+                        q1_selected_option: 'Excellent',
+                        q1_answered: true
+                 })">
+                     <span class="option_text">
+                        Excellent
+                     </span>
+                     <div class="selector"
+                        [class]="q1_selected_option == 'Excellent' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="single_question">
+               <div class="question">
+                  <div><span class="number">2</span></div>
+                  <span class="text">How active are you?</span>
+               </div>
+               <div class="options_container">
+                  <div class="bar"></div>
+                  <div class="option" [class]="q2_selected_option == 'Very inactive' ? 'option selected' : 'option'" on="tap:AMP.setState({
+                        q2_selected_option: 'Very inactive',
+                        q2_answered: true
+                  })">
+                     <span class="option_text">Very inactive</span>
+                     <div class="selector"
+                        [class]="q2_selected_option == 'Very inactive' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q2_selected_option == 'Inactive' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q2_selected_option: 'Inactive',
+                        q2_answered: true
+                 })">
+                     <span class="option_text">
+                        Inactive
+                     </span>
+                     <div class="selector"
+                        [class]="q2_selected_option == 'Inactive' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q2_selected_option == 'Average' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q2_selected_option: 'Average',
+                        q2_answered: true
+               })">
+                     <span class="option_text">
+                        Average
+                     </span>
+                     <div class="selector" [class]="q2_selected_option == 'Average' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q2_selected_option == 'Active' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q2_selected_option: 'Active',
+                        q2_answered: true
+                 })">
+                     <span class="option_text">
+                        Active
+                     </span>
+                     <div class="selector" [class]="q2_selected_option == 'Active' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option end"
+                     [class]="q2_selected_option == 'Very active' ? 'option end selected' : 'option end'" on="tap:AMP.setState({
+                        q2_selected_option: 'Very active',
+                        q2_answered: true
+                 })">
+                     <span class="option_text">
+                        Very active
+                     </span>
+                     <div class="selector"
+                        [class]="q2_selected_option == 'Very active' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="single_question">
+               <div class="question">
+                  <div><span class="number">3</span></div>
+                  <span class="text">Do you always feel tired?</span>
+               </div>
+               <div class="options_container">
+                  <div class="bar"></div>
+                  <div class="option" [class]="q3_selected_option == 'Always' ? 'option selected' : 'option'" on="tap:AMP.setState({
+                     q3_selected_option: 'Always',
+                     q3_answered: true
+                  })">
+                     <span class="option_text">Always</span>
+                     <div class="selector" [class]="q3_selected_option == 'Always' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q3_selected_option == 'Often' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q3_selected_option: 'Often',
+                        q3_answered: true
+                 })">
+                     <span class="option_text">
+                        Often
+                     </span>
+                     <div class="selector" [class]="q3_selected_option == 'Often' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q3_selected_option == 'Average' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q3_selected_option: 'Average',
+                        q3_answered: true
+               })">
+                     <span class="option_text">
+                        Average
+                     </span>
+                     <div class="selector" [class]="q3_selected_option == 'Average' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option center"
+                     [class]="q3_selected_option == 'No' ? 'option center selected' : 'option center'" on="tap:AMP.setState({
+                        q3_selected_option: 'No',
+                        q3_answered: true
+                 })">
+                     <span class="option_text">
+                        No
+                     </span>
+                     <div class="selector" [class]="q3_selected_option == 'No' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+                  <div class="option end" [class]="q3_selected_option == 'Never' ? 'option end selected' : 'option end'"
+                     on="tap:AMP.setState({
+                        q3_selected_option: 'Never',
+                        q3_answered: true
+                 })">
+                     <span class="option_text">
+                        Never
+                     </span>
+                     <div class="selector" [class]="q3_selected_option == 'Never' ? 'selector selected' : 'selector'">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Question 4 -->
+            <div class="single_question">
+               <div class="question">
+                  <div><span class="number">4</span></div>
+                  <span class="text">What are the activities that you enjoy doing? Select all activities that
+                     apply</span>
+               </div>
+               <amp-selector class="activities" multiple on="select:AMP.setState({
+                  selectedOption: event.targetOption,
+                  q4_selected_options: event.selectedOptions,
+                  q4_answered: true
+               })">
+                  <div class="pill_option" option="Yoga" id="yoga">
+                     Yoga
+                  </div>
+                  <div class="pill_option" option="Cycling" id="cycling">
+                     Cycling
+                  </div>
+                  <div class="pill_option" option="Martial Arts" id="martial_arts">
+                     Martial Arts
+                  </div>
+                  <div class="pill_option" option="Dancing" id="dancing">
+                     Dancing
+                  </div>
+                  <div class="pill_option" option="Dog Walks" id="dog_walks">
+                     Dog Walks
+                  </div>
+                  <div class="pill_option" option="Swimming" id="swimming">
+                     Swimming
+                  </div>
+                  <div class="pill_option" option="Jogging" id="jogging">
+                     Jogging
+                  </div>
+                  <div class="pill_option" option="Running" id="running">
+                     Running
+                  </div>
+                  <div class="pill_option" option="Hiking" id="hiking">
+                     Hiking
+                  </div>
+                  <div class="pill_option" option="Others" id="other">
+                     Others
+                  </div>
+               </amp-selector>
+            </div>
+         </div>
+      </div>
+
+      <!-- Form -->
+      <div class="form section">
+         <form method="post" action-xhr="https://mc-yfyyj2sjhsjhkwc1s8w4zrxx4.pub.sfmc-content.com/jcfrnxchdir"
+            on="submit:AMP.setState({submitted: true})">
+            <!-- capture subscribers' answers -->
+            <input type="hidden" name="email" value="simon.pham@cloudkettle.com">
+            <input type="hidden" name="answer_1" [value]="q1_selected_option">
+            <input type="hidden" name="answer_2" [value]="q2_selected_option">
+            <input type="hidden" name="answer_3" [value]="q3_selected_option">
+            <input type="hidden" name="answer_4" [value]="q4_selected_options.join(', ')">
+
+            <!-- submit btn enabled -->
+            <button type="submit" class="hidden"
+               [class]="submitted == true ? 'hidden' : (q1_answered == true && q2_answered == true && q3_answered == true && q4_answered == true) ? 'btn_enabled' : 'hidden'">Submit</button>
+            <div class="msg success" submitting>
+               Submitting...
+            </div>
+            <div class="msg success" submit-success>
+               <template type="amp-mustache">
+                  Thank you for taking your time to complete the survey!
+               </template>
+            </div>
+            <div class="msg fail" submit-error>
+               <template type="amp-mustache">
+                  Sorry. Submission failed :(!
+               </template>
+            </div>
+         </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer section">
+         <p>Our mailing address is: <br>
+            3555 Madison Ave New York, NY 20017
+         </p>
+         <p>
+            Don't want to hear from us anymore? <a style="color: #fff; text-decoration: underline;">Unsubscribe</a>
+         </p>
+      </div>
+   </div>
+</body>
+
+</html>
